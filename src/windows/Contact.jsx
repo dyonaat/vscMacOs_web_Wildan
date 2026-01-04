@@ -1,5 +1,7 @@
 import { socials } from "#constants";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
+import { asset } from "#utils/asset";
+
 
 const Contact = ({ closeSelf }) => {
   return (
@@ -28,10 +30,11 @@ const Contact = ({ closeSelf }) => {
       {/* BODY */}
       <div className="p-5 space-y-5 flex flex-col items-center text-center">
         <img
-          src="/images/adrian.jpg"
-          alt="Adrian"
-          className="w-24 h-24 rounded-full object-cover"
-        />
+  src={asset("images/adrian.jpg")}
+  alt="Adrian"
+  className="w-24 h-24 rounded-full object-cover"
+/>
+
 
         <h3 className="text-lg font-semibold">Lets Connect</h3>
         <p className="text-sm opacity-80">Got an idea?</p>

@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import { navLinks, navIcons } from "../constants/index.js";
 import useWindowStore from "#store/window.js";
+import { asset } from "#utils/asset";
+
 
 const Navbar = () => {
   const { openWindow } = useWindowStore();
@@ -9,7 +11,7 @@ const Navbar = () => {
     <nav className="flex items-center justify-between px-3 h-8">
       {/* LEFT */}
       <div className="flex items-center gap-4">
-        <img src="/images/logo.svg" alt="logo" />
+        <img src={asset("images/logo.svg")} alt="logo" />
         <p className="font-bold">Alfath's Portfolio</p>
 
         <ul className="flex items-center gap-3">
