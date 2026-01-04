@@ -71,10 +71,10 @@ const techStack = [
    SOCIALS
 ======================= */
 const socials = [
-  { id: 1, text: "Github", icon: asset("icons/github.svg"), bg: "#f4656b", link: "https://github.com/JavaScript-Mastery-Pro" },
-  { id: 2, text: "Platform", icon: asset("icons/atom.svg"), bg: "#4bcb63", link: "https://jsmastery.com/" },
-  { id: 3, text: "Twitter/X", icon: asset("icons/twitter.svg"), bg: "#ff866b", link: "https://x.com/jsmasterypro" },
-  { id: 4, text: "LinkedIn", icon: asset("icons/linkedin.svg"), bg: "#05b6f6", link: "https://www.linkedin.com/company/javascriptmastery/posts/?feedView=all" },
+  { id: 1, text: "Github", icon: asset("icons/github.svg"), bg: "#f4656b", link: "https://github.com/dyonaat" },
+  { id: 2, text: "Platform", icon: asset("icons/whatsapp1.svg"), bg: "#4bcb63", link: "https://wa.me/6281383674048/" },
+  { id: 3, text: "Twitter/X", icon: asset("icons/twitter.svg"), bg: "#ff866b", link: "#" },
+  { id: 4, text: "LinkedIn", icon: asset("icons/linkedin.svg"), bg: "#05b6f6", link: "#" },
 ];
 
 /* =======================
@@ -89,10 +89,10 @@ const photosLinks = [
 ];
 
 const gallery = [
-  { id: 1, img: asset("images/gal1.png") },
-  { id: 2, img: asset("images/gal2.png") },
-  { id: 3, img: asset("images/gal3.png") },
-  { id: 4, img: asset("images/gal4.png") },
+  { id: 1, img: asset("images/gal1v.png") },
+  { id: 2, img: asset("images/gal2v.png") },
+  { id: 3, img: asset("images/gal3v.png") },
+  { id: 4, img: asset("images/gal4v.png") },
 ];
 
 /* =======================
@@ -241,7 +241,7 @@ const ABOUT_LOCATION = {
       icon: asset("images/image.png"),
       kind: "file",
       fileType: "image",
-      imageURL: asset("images/adrian.jpg"),
+      imageURL: asset("images/alfath.jpg"),
     },
     {
       id: 2,
@@ -250,7 +250,7 @@ const ABOUT_LOCATION = {
       kind: "file",
       fileType: "txt",
       description: [
-        "Hey! I’m Adrian 👋, a web developer who loves building interactive experiences.",
+        "Hey! I’m Alfath 👋, a web developer who loves building interactive experiences.",
         "Specialized in React, Next.js, and modern UI.",
       ],
     },

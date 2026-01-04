@@ -30,13 +30,13 @@ const Contact = ({ closeSelf }) => {
       {/* BODY */}
       <div className="p-5 space-y-5 flex flex-col items-center text-center">
         <img
-  src={asset("images/adrian.jpg")}
+  src={asset("images/alfath.jpg")}
   alt="Adrian"
   className="w-24 h-24 rounded-full object-cover"
 />
 
 
-        <h3 className="text-lg font-semibold">Lets Connect</h3>
+        <h3 className="text-lg font-semibold">Hayyu kadie</h3>
         <p className="text-sm opacity-80">Got an idea?</p>
 
         {/* SOCIAL ICONS HORIZONTAL */}

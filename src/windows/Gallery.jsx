@@ -36,7 +36,7 @@ const Gallery = ({ setWindowSize }) => {
       <div id="window-header">
         <WindowControls target="photos" />
         <div className="flex-1 flex items-center px-2">
-          <span className="text-sm font-medium">Gallery</span>
+          <span className="text-sm font-medium">Old Project</span>
         </div>
       </div>
 
