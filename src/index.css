@@ -39,7 +39,7 @@ body {
     }
 
     nav {
-        @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+        @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-1.5 px-3 select-none;
 
         div {
             @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -48,7 +48,53 @@ body {
                 @apply max-sm:hidden;
             }
         }
+    }
 
+    /* Custom scrollbar styling for PDF container */
+    .pdf-container {
+        @apply h-full overflow-y-auto p-4;
+        scrollbar-width: thin;
+        scrollbar-color: #6b7280 #e5e7eb;
+        scroll-behavior: smooth;
+        /* Ensure smooth scrolling on all browsers */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .pdf-container::-webkit-scrollbar {
+        width: 14px;
+    }
+
+    .pdf-container::-webkit-scrollbar-track {
+        background: #f3f4f6;
+        border-radius: 8px;
+        margin: 6px;
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .pdf-container::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #6b7280 0%, #4b5563 100%);
+        border-radius: 8px;
+        border: 2px solid #f3f4f6;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .pdf-container::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #4b5563 0%, #374151 100%);
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .pdf-container::-webkit-scrollbar-thumb:active {
+        background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+        transform: scale(0.95);
+    }
+
+    .pdf-container::-webkit-scrollbar-corner {
+        background: #f3f4f6;
+    }
+
+    nav {
         ul {
             @apply flex items-center gap-5 max-sm:hidden;
 
@@ -68,6 +114,12 @@ body {
         @apply p-1 hover:bg-gray-200 rounded hover:cursor-default;
     }
 
+    .icon-hover {
+        @apply size-5 object-cover object-center cursor-pointer transition-transform duration-200 hover:scale-110;
+        transform-origin: center;
+        margin: auto;
+    }
+
     #welcome {
         @apply text-gray-200 flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none max-sm:h-screen max-sm:w-full max-sm:px-10;
 
@@ -81,10 +133,10 @@ body {
     }
 
     #dock {
-        @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
+        @apply absolute bottom-2 sm:bottom-5 left-1/2 -translate-x-1/2 z-50 select-none;
 
         .dock-container {
-            @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
+            @apply bg-white/20 backdrop-blur-md justify-between rounded-xl sm:rounded-2xl p-1 sm:p-1.5 flex items-end gap-1 sm:gap-1.5;
         }
 
         .tooltip {
@@ -92,10 +144,14 @@ body {
         }
 
         .dock-icon {
-            @apply size-14 3xl:size-20 cursor-pointer;
+            @apply size-8 sm:size-10 md:size-11 lg:size-12 xl:size-13 3xl:size-14 cursor-pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             img {
                 @apply object-cover object-center;
+                transform-origin: center center;
             }
         }
     }
@@ -117,11 +173,124 @@ body {
     }
 
     #window-header {
-        @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
+        @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-600;
+        font-family: var(--font-georama);
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        color: rgba(55, 65, 81, 0.95); /* slightly darker slate */
+    }
+
+    /* Elegant nav links (Projects / Contact / Resume) */
+    nav ul li {
+        position: relative;
+        @apply cursor-pointer;
+        font-family: var(--font-georama);
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: rgba(17, 24, 39, 0.85);
+        transition: transform 180ms cubic-bezier(.2,.9,.2,1), color 180ms ease, opacity 160ms ease;
+        will-change: transform;
+        padding-bottom: 2px;
+    }
+
+    nav ul li::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%) scaleX(0);
+        transform-origin: center;
+        width: 70%;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(59,130,246,0.95), rgba(99,102,241,0.95));
+        border-radius: 2px;
+        transition: transform 180ms cubic-bezier(.2,.9,.2,1);
+        opacity: 0.95;
+    }
+
+    nav ul li:hover {
+        transform: translateY(-3px) scale(1.03);
+        color: rgba(15, 23, 42, 1);
+    }
+
+    nav ul li:hover::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Login overlay */
+    .login-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(8px) saturate(110%);
+        z-index: 9999;
+        transition: opacity 420ms ease, transform 420ms ease;
+    }
+
+    .login-card {
+        width: min(520px, 92%);
+        max-width: 520px;
+        background: rgba(255,255,255,0.85);
+        border-radius: 12px;
+        padding: 28px 32px;
+        box-shadow: 0 8px 30px rgba(2,6,23,0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        transform: translateY(0);
+    }
+
+    .login-title {
+        font-family: var(--font-georama);
+        font-size: 20px;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0;
+    }
+
+    .login-sub {
+        font-size: 13px;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+
+    .login-btn {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(90deg, #3b82f6 0%, #6366f1 100%);
+        color: white;
+        padding: 10px 22px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-family: var(--font-georama);
+        box-shadow: 0 8px 22px rgba(59,130,246,0.18);
+        transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, opacity 160ms ease;
+        transform-origin: center;
+    }
+
+    .login-btn:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(59,130,246,0.22);
+    }
+
+    .login-btn.loading {
+        opacity: 0.95;
+        transform: scale(0.98);
+    }
+
+    .login-exit {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.98) translateY(8px);
     }
 
     #safari {
-        @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply w-3xl absolute top-32 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
         .search {
             @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
@@ -165,7 +334,7 @@ body {
     }
 
     #terminal {
-        @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply w-lg absolute top-24 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
         h2 {
             @apply font-bold text-sm text-center w-full;
@@ -211,7 +380,7 @@ body {
     }
 
     #contact {
-        @apply max-w-2xl absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply max-w-xl absolute top-48 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
         h2 {
             @apply font-bold text-sm text-center w-full;
@@ -239,7 +408,7 @@ body {
     }
 
     #photos {
-        @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply max-w-4xl absolute top-80 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
         .sidebar {
             @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5;
@@ -268,10 +437,10 @@ body {
         }
 
         .gallery {
-            @apply p-5;
+            @apply p-6;
 
             ul {
-                @apply grid grid-cols-5 grid-rows-5 gap-2.5;
+                @apply grid grid-cols-5 grid-rows-5 gap-3;
 
                 li {
                     img {
@@ -342,7 +511,7 @@ body {
                 @apply absolute flex items-center flex-col gap-3;
 
                 img {
-                    @apply object-contain object-center size-16 relative group-hover:scale-105;
+                    @apply object-contain object-center size-12 relative group-hover:scale-105;
                 }
 
                 p {

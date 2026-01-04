@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "MacOS_Portfolio-main",
+			"path": "."
+		},
+		{
+			"name": "public",
+			"path": "../public/__MACOSX/public"
+		}
+	],
+	"settings": {}
+}
